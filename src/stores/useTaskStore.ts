@@ -26,4 +26,4 @@ const useTaskStore = create<State>()(
   )
 );
 
-export default useWindowStore;
+export default useTaskStore;

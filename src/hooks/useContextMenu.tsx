@@ -13,7 +13,7 @@ type Props = {
 };
 
 const useContextMenu = () => {
-  const refMenu = useRef(null);
+  const refMenu = useRef(null as null | HTMLDivElement);
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
   const [show, setShow] = useState(false);
   const [height, setHeight] = useState(0);
@@ -25,12 +25,12 @@ const useContextMenu = () => {
     if (refMenu.current === undefined) {
       return;
     }
-    setHeight(refMenu.current?.clientHeight);
-    setWidth(refMenu.current?.clientWidth);
+    setHeight(refMenu.current?.clientHeight || 0);
+    setWidth(refMenu.current?.clientWidth || 0);
   }, [refMenu]);
 
   const handleContextMenu = useCallback(
-    (event) => {
+    (event: any) => {
       event.preventDefault();
 
       console.log(window);

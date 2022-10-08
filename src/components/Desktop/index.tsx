@@ -7,7 +7,7 @@ import useContextMenu from "~/hooks/useContextMenu";
 import { List } from "@react95/core";
 
 export const Desktop = () => {
-  const ref = useRef(null);
+  const ref = useRef(null as null | HTMLDivElement);
   const setWindow = useWindowStore((state) => state.setMonitor);
 
   const { handleContextMenu, ContextMenu } = useContextMenu();
@@ -25,8 +25,8 @@ export const Desktop = () => {
     });
 
     setWindow({
-      height: ref.current?.clientHeight,
-      width: ref.current?.clientWidth,
+      height: ref.current?.clientHeight || 0,
+      width: ref.current?.clientWidth || 0,
     });
   }, [ref.current]);
 
