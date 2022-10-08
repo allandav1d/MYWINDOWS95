@@ -35,18 +35,10 @@ export const TaskBarWrapper = () => {
       <TaskBar
         list={
           <List>
-            <List.Item
-              icon={<ReaderClosed variant="32x32_4" />}
-              onClick={() => toggleSecond(true)}
-            >
+            <List.Item icon={<ReaderClosed variant="32x32_4" />}>
               Local Disk (C:)
             </List.Item>
-            <List.Item
-              icon={<WindowsExplorer variant="32x32_4" />}
-              onClick={() => {
-                toggleFirst(true);
-              }}
-            >
+            <List.Item icon={<WindowsExplorer variant="32x32_4" />}>
               Windows Explorer
             </List.Item>
           </List>
