@@ -1,11 +1,12 @@
 import { List } from "@react95/core";
-import { RightMenu } from "./styles";
+import { RightMenu, ScreenBox } from "./styles";
 
 type Props = {
   anchorPoint: { x: number; y: number };
   show: boolean;
   refMenu: any;
   children?: JSX.Element | JSX.Element[];
+  handleClick: (e: any) => void;
 };
 
 export const ContextMenu = ({
@@ -13,19 +14,22 @@ export const ContextMenu = ({
   refMenu,
   show,
   children,
+  handleClick,
 }: Props) => {
   return (
     <>
       {show ? (
-        <RightMenu
-          ref={refMenu}
-          style={{
-            top: anchorPoint.y,
-            left: anchorPoint.x,
-          }}
-        >
-          {children}
-        </RightMenu>
+        <ScreenBox onContextMenu={(e) => handleClick(e)}>
+          <RightMenu
+            ref={refMenu}
+            style={{
+              top: anchorPoint.y,
+              left: anchorPoint.x,
+            }}
+          >
+            {children}
+          </RightMenu>
+        </ScreenBox>
       ) : (
         <> </>
       )}

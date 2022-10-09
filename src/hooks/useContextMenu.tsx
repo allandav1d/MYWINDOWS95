@@ -26,9 +26,6 @@ const useContextMenu = () => {
       return;
     }
 
-    console.log(refMenu.current);
-    console.log(refMenu.current?.clientHeight);
-    console.log(refMenu.current?.clientWidth);
     setHeight(refMenu.current?.clientHeight);
     setWidth(refMenu.current?.clientWidth);
   }, [refMenu.current]);
@@ -37,15 +34,18 @@ const useContextMenu = () => {
     (event: any) => {
       event.preventDefault();
 
-      console.log(window);
-      console.log(height, width);
+      console.log("pageX ", event.pageX);
+      console.log("pageY ", event.pageY);
+      console.log("tatol ", event.pageY - height);
+      console.log("window.height ", window.height);
+
       setAnchorPoint({
         x:
-          event.pageX + width > window.width
+          event.pageX - width / 2 >= window.width
             ? event.pageX - width
             : event.pageX,
         y:
-          event.pageY + height > window.height
+          event.pageY + height >= window.height
             ? event.pageY - height
             : event.pageY,
       });
@@ -65,8 +65,19 @@ const useContextMenu = () => {
     };
   });
 
+  const CloseAll = (e) => {
+    e.preventDefault();
+    console.log("Close All");
+    setShow(false);
+  };
+
   const ContextMenu = ({ children }: Props) => (
-    <ContextMenuElement anchorPoint={anchorPoint} show={show} refMenu={refMenu}>
+    <ContextMenuElement
+      anchorPoint={anchorPoint}
+      show={show}
+      refMenu={refMenu}
+      handleClick={CloseAll}
+    >
       {children}
     </ContextMenuElement>
   );
