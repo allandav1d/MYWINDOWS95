@@ -65,7 +65,7 @@ const useContextMenu = () => {
     };
   });
 
-  const CloseAll = (e) => {
+  const CloseAll = (e: any) => {
     e.preventDefault();
     console.log("Close All");
     setShow(false);
