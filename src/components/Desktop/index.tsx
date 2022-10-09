@@ -12,17 +12,10 @@ export const Desktop = () => {
 
   const { handleContextMenu, ContextMenu } = useContextMenu();
 
-  const [contextMenu, setContextMenu] = useState(false);
-
   useEffect(() => {
     if (ref.current === undefined) {
       return;
     }
-
-    console.log({
-      height: ref.current?.clientHeight,
-      width: ref.current?.clientWidth,
-    });
 
     setWindow({
       height: ref.current?.clientHeight || 0,

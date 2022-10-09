@@ -16,18 +16,22 @@ const useContextMenu = () => {
   const refMenu = useRef(null as null | HTMLDivElement);
   const [anchorPoint, setAnchorPoint] = useState({ x: 0, y: 0 });
   const [show, setShow] = useState(false);
-  const [height, setHeight] = useState(0);
-  const [width, setWidth] = useState(0);
+  const [height, setHeight] = useState<number>(0);
+  const [width, setWidth] = useState<number>(0);
 
   const window = useWindowStore((state) => state.monitor);
 
-  useLayoutEffect(() => {
-    if (refMenu.current === undefined) {
+  useEffect(() => {
+    if (refMenu.current === undefined || refMenu.current === null) {
       return;
     }
-    setHeight(refMenu.current?.clientHeight || 0);
-    setWidth(refMenu.current?.clientWidth || 0);
-  }, [refMenu]);
+
+    console.log(refMenu.current);
+    console.log(refMenu.current?.clientHeight);
+    console.log(refMenu.current?.clientWidth);
+    setHeight(refMenu.current?.clientHeight);
+    setWidth(refMenu.current?.clientWidth);
+  }, [refMenu.current]);
 
   const handleContextMenu = useCallback(
     (event: any) => {
@@ -47,7 +51,7 @@ const useContextMenu = () => {
       });
       setShow(true);
     },
-    [setShow, setAnchorPoint]
+    [setShow, setAnchorPoint, height, width]
   );
 
   const handleClick = useCallback(() => (show ? setShow(false) : null), [show]);
