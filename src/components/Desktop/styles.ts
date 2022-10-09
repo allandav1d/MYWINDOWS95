@@ -13,5 +13,5 @@ export const Content = styled.div`
   position: relative;
   width: 100%;
   display: flex;
-  height: 96%;
+  height: 96.5%;
 `;
